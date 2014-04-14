@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 12, 2014 12:23:52 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojos.Circle" table="circle" catalog="carpooling">
+        <id name="idCircle" type="java.lang.Integer">
+            <column name="idCircle" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="pojos.User" fetch="select">
+            <column name="Users_id" not-null="true" />
+        </many-to-one>
+        <property name="circleName" type="string">
+            <column name="circle_name" length="45" not-null="true" />
+        </property>
+        <set name="existIns" inverse="true">
+            <key>
+                <column name="Circle_id" not-null="true" />
+            </key>
+            <one-to-many class="pojos.ExistIn" />
+        </set>
+    </class>
+</hibernate-mapping>

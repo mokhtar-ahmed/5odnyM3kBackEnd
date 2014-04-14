@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 12, 2014 12:23:52 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojos.ExistIn" table="exist_in" catalog="carpooling">
+        <composite-id name="id" class="pojos.ExistInId">
+            <key-property name="usersId" type="int">
+                <column name="Users_id" />
+            </key-property>
+            <key-property name="circleId" type="int">
+                <column name="Circle_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="user" class="pojos.User" update="false" insert="false" fetch="select">
+            <column name="Users_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="circle" class="pojos.Circle" update="false" insert="false" fetch="select">
+            <column name="Circle_id" not-null="true" />
+        </many-to-one>
+        <property name="bolckStatue" type="string">
+            <column name="bolckStatue" length="45" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
