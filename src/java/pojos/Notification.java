@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -11,8 +11,8 @@ public class Notification  implements java.io.Serializable {
 
 
      private NotificationId id;
+     private Users users;
      private Event event;
-     private User user;
      private Date notificationDate;
      private String eventType;
      private String eventState;
@@ -21,16 +21,16 @@ public class Notification  implements java.io.Serializable {
     }
 
 	
-    public Notification(NotificationId id, Event event, User user, Date notificationDate) {
+    public Notification(NotificationId id, Users users, Event event, Date notificationDate) {
         this.id = id;
+        this.users = users;
         this.event = event;
-        this.user = user;
         this.notificationDate = notificationDate;
     }
-    public Notification(NotificationId id, Event event, User user, Date notificationDate, String eventType, String eventState) {
+    public Notification(NotificationId id, Users users, Event event, Date notificationDate, String eventType, String eventState) {
        this.id = id;
+       this.users = users;
        this.event = event;
-       this.user = user;
        this.notificationDate = notificationDate;
        this.eventType = eventType;
        this.eventState = eventState;
@@ -43,19 +43,19 @@ public class Notification  implements java.io.Serializable {
     public void setId(NotificationId id) {
         this.id = id;
     }
+    public Users getUsers() {
+        return this.users;
+    }
+    
+    public void setUsers(Users users) {
+        this.users = users;
+    }
     public Event getEvent() {
         return this.event;
     }
     
     public void setEvent(Event event) {
         this.event = event;
-    }
-    public User getUser() {
-        return this.user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
     }
     public Date getNotificationDate() {
         return this.notificationDate;

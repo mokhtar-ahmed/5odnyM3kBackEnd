@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -9,30 +9,30 @@ package pojos;
 public class Phone  implements java.io.Serializable {
 
 
-     private String phoneNumber;
-     private User user;
+     private int idPhone;
+     private Users users;
 
     public Phone() {
     }
 
-    public Phone(String phoneNumber, User user) {
-       this.phoneNumber = phoneNumber;
-       this.user = user;
+    public Phone(int idPhone, Users users) {
+       this.idPhone = idPhone;
+       this.users = users;
     }
    
-    public String getPhoneNumber() {
-        return this.phoneNumber;
+    public int getIdPhone() {
+        return this.idPhone;
     }
     
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setIdPhone(int idPhone) {
+        this.idPhone = idPhone;
     }
-    public User getUser() {
-        return this.user;
+    public Users getUsers() {
+        return this.users;
     }
     
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
 

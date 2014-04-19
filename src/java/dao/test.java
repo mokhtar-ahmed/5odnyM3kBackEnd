@@ -9,7 +9,7 @@ public class test {
     public static void main(String[] args){
     
         
-        List<User> user =  new UserHome().getUser(1);
+        List<Users> user =  new UserHome().getUser(1);
         if(!user.isEmpty()){
            List<Event> ev =  new EventHome().searchEventByDriver(user.get(0));
           System.out.println(ev.size());

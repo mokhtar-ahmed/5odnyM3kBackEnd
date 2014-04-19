@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -12,7 +12,7 @@ public class Circle  implements java.io.Serializable {
 
 
      private Integer idCircle;
-     private User user;
+     private Users users;
      private String circleName;
      private Set existIns = new HashSet(0);
 
@@ -20,12 +20,12 @@ public class Circle  implements java.io.Serializable {
     }
 
 	
-    public Circle(User user, String circleName) {
-        this.user = user;
+    public Circle(Users users, String circleName) {
+        this.users = users;
         this.circleName = circleName;
     }
-    public Circle(User user, String circleName, Set existIns) {
-       this.user = user;
+    public Circle(Users users, String circleName, Set existIns) {
+       this.users = users;
        this.circleName = circleName;
        this.existIns = existIns;
     }
@@ -37,12 +37,12 @@ public class Circle  implements java.io.Serializable {
     public void setIdCircle(Integer idCircle) {
         this.idCircle = idCircle;
     }
-    public User getUser() {
-        return this.user;
+    public Users getUsers() {
+        return this.users;
     }
     
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
     public String getCircleName() {
         return this.circleName;

@@ -7,7 +7,7 @@ package dao;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pojos.User;
+import pojos.Users;
 
 
 public class UserHome {
@@ -18,10 +18,10 @@ public class UserHome {
         session = new HibernateUtil().getSessionFactory().openSession();
         
     }
-      public List<User> getUser(Integer id){
+      public List<Users> getUser(Integer id){
         
           Query createQuery = session.createQuery("from User u where u.id = :user ").setString("user", id.toString());
-          List<User> u = createQuery.list();
+          List<Users> u = createQuery.list();
           return u;
     }
     

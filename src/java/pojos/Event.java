@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -12,14 +12,13 @@ import java.util.Set;
 public class Event  implements java.io.Serializable {
 
 
-     private Integer id;
-     private User user;
+     private Integer idEvent;
+     private Users users;
      private Location location;
-     private String name;
+     private String eventName;
      private int noOfSlots;
-     private Date date;
+     private Date eventDate;
      private String eventStatue;
-     
      private Set notifications = new HashSet(0);
      private Set eventToLocations = new HashSet(0);
      private Set joinEvents = new HashSet(0);
@@ -29,20 +28,20 @@ public class Event  implements java.io.Serializable {
     }
 
 	
-    public Event(User user, Location location, String name, int noOfSlots, Date date, String eventStatue) {
-        this.user = user;
+    public Event(Users users, Location location, String eventName, int noOfSlots, Date eventDate, String eventStatue) {
+        this.users = users;
         this.location = location;
-        this.name = name;
+        this.eventName = eventName;
         this.noOfSlots = noOfSlots;
-        this.date = date;
+        this.eventDate = eventDate;
         this.eventStatue = eventStatue;
     }
-    public Event(User user, Location location, String name, int noOfSlots, Date date, String eventStatue, Set notifications, Set eventToLocations, Set joinEvents, Set comments) {
-       this.user = user;
+    public Event(Users users, Location location, String eventName, int noOfSlots, Date eventDate, String eventStatue, Set notifications, Set eventToLocations, Set joinEvents, Set comments) {
+       this.users = users;
        this.location = location;
-       this.name = name;
+       this.eventName = eventName;
        this.noOfSlots = noOfSlots;
-       this.date = date;
+       this.eventDate = eventDate;
        this.eventStatue = eventStatue;
        this.notifications = notifications;
        this.eventToLocations = eventToLocations;
@@ -50,19 +49,19 @@ public class Event  implements java.io.Serializable {
        this.comments = comments;
     }
    
-    public Integer getId() {
-        return this.id;
+    public Integer getIdEvent() {
+        return this.idEvent;
     }
     
-    public void setId(Integer id) {
-        this.id = id;
+    public void setIdEvent(Integer idEvent) {
+        this.idEvent = idEvent;
     }
-    public User getUser() {
-        return this.user;
+    public Users getUsers() {
+        return this.users;
     }
     
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
     public Location getLocation() {
         return this.location;
@@ -71,12 +70,12 @@ public class Event  implements java.io.Serializable {
     public void setLocation(Location location) {
         this.location = location;
     }
-    public String getName() {
-        return this.name;
+    public String getEventName() {
+        return this.eventName;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
     }
     public int getNoOfSlots() {
         return this.noOfSlots;
@@ -85,12 +84,12 @@ public class Event  implements java.io.Serializable {
     public void setNoOfSlots(int noOfSlots) {
         this.noOfSlots = noOfSlots;
     }
-    public Date getDate() {
-        return this.date;
+    public Date getEventDate() {
+        return this.eventDate;
     }
     
-    public void setDate(Date date) {
-        this.date = date;
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
     }
     public String getEventStatue() {
         return this.eventStatue;

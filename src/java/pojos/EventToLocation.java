@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -10,17 +10,17 @@ public class EventToLocation  implements java.io.Serializable {
 
 
      private EventToLocationId id;
-     private Event event;
      private Location location;
+     private Event event;
      private int toOrder;
 
     public EventToLocation() {
     }
 
-    public EventToLocation(EventToLocationId id, Event event, Location location, int toOrder) {
+    public EventToLocation(EventToLocationId id, Location location, Event event, int toOrder) {
        this.id = id;
-       this.event = event;
        this.location = location;
+       this.event = event;
        this.toOrder = toOrder;
     }
    
@@ -31,19 +31,19 @@ public class EventToLocation  implements java.io.Serializable {
     public void setId(EventToLocationId id) {
         this.id = id;
     }
-    public Event getEvent() {
-        return this.event;
-    }
-    
-    public void setEvent(Event event) {
-        this.event = event;
-    }
     public Location getLocation() {
         return this.location;
     }
     
     public void setLocation(Location location) {
         this.location = location;
+    }
+    public Event getEvent() {
+        return this.event;
+    }
+    
+    public void setEvent(Event event) {
+        this.event = event;
     }
     public int getToOrder() {
         return this.toOrder;

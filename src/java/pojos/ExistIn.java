@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -10,16 +10,16 @@ public class ExistIn  implements java.io.Serializable {
 
 
      private ExistInId id;
-     private User user;
+     private Users users;
      private Circle circle;
      private String bolckStatue;
 
     public ExistIn() {
     }
 
-    public ExistIn(ExistInId id, User user, Circle circle, String bolckStatue) {
+    public ExistIn(ExistInId id, Users users, Circle circle, String bolckStatue) {
        this.id = id;
-       this.user = user;
+       this.users = users;
        this.circle = circle;
        this.bolckStatue = bolckStatue;
     }
@@ -31,12 +31,12 @@ public class ExistIn  implements java.io.Serializable {
     public void setId(ExistInId id) {
         this.id = id;
     }
-    public User getUser() {
-        return this.user;
+    public Users getUsers() {
+        return this.users;
     }
     
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
     public Circle getCircle() {
         return this.circle;

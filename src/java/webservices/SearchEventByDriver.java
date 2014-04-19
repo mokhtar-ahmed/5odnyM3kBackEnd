@@ -29,7 +29,7 @@ public class SearchEventByDriver {
       
       JSONArray ev = new JSONArray();
     
-      List<User> user =  new UserHome().getUser(Integer.parseInt(idStr));
+      List<Users> user =  new UserHome().getUser(Integer.parseInt(idStr));
        
       if(user.isEmpty() == false){
           

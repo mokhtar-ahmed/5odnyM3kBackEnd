@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 
@@ -10,18 +10,18 @@ public class JoinEvent  implements java.io.Serializable {
 
 
      private JoinEventId id;
-     private Event event;
      private UserStatue userStatue;
-     private User user;
+     private Users users;
+     private Event event;
 
     public JoinEvent() {
     }
 
-    public JoinEvent(JoinEventId id, Event event, UserStatue userStatue, User user) {
+    public JoinEvent(JoinEventId id, UserStatue userStatue, Users users, Event event) {
        this.id = id;
-       this.event = event;
        this.userStatue = userStatue;
-       this.user = user;
+       this.users = users;
+       this.event = event;
     }
    
     public JoinEventId getId() {
@@ -31,13 +31,6 @@ public class JoinEvent  implements java.io.Serializable {
     public void setId(JoinEventId id) {
         this.id = id;
     }
-    public Event getEvent() {
-        return this.event;
-    }
-    
-    public void setEvent(Event event) {
-        this.event = event;
-    }
     public UserStatue getUserStatue() {
         return this.userStatue;
     }
@@ -45,12 +38,19 @@ public class JoinEvent  implements java.io.Serializable {
     public void setUserStatue(UserStatue userStatue) {
         this.userStatue = userStatue;
     }
-    public User getUser() {
-        return this.user;
+    public Users getUsers() {
+        return this.users;
     }
     
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+    public Event getEvent() {
+        return this.event;
+    }
+    
+    public void setEvent(Event event) {
+        this.event = event;
     }
 
 

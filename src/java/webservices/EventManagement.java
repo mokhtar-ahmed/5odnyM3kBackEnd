@@ -13,6 +13,7 @@ import pojos.*;
 
 @Path("/event")
 public class EventManagement {
+    
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -26,11 +27,11 @@ public class EventManagement {
             JSONObject eventJson = new JSONObject();
             
             //id
-            int id               = myEvent.getId();
+            int id               = myEvent.getIdEvent();
             eventJson.put("idEvent", id);
             
             //user
-            User user   = myEvent.getUser();
+            Users user   = myEvent.getUsers();
             JSONObject userJson = new JSONObject();
             userJson.put("id", user.getId());
             userJson.put("username", user.getUsername());
@@ -44,7 +45,7 @@ public class EventManagement {
             eventJson.put("location", locationJson);
             
             //name
-            String name          = myEvent.getName();
+            String name          = myEvent.getEventName();
             eventJson.put("eventName", name);
             
             //slots
@@ -52,7 +53,7 @@ public class EventManagement {
             eventJson.put("noOfSlots", slots);
             
             //date
-            Date date            = myEvent.getDate();
+            Date date            = myEvent.getEventDate();
             eventJson.put("eventDate", date);
             
             //status

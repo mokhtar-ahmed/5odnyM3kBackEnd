@@ -1,5 +1,5 @@
 package pojos;
-// Generated Apr 12, 2014 12:23:51 PM by Hibernate Tools 3.2.1.GA
+// Generated Apr 19, 2014 3:45:32 PM by Hibernate Tools 3.2.1.GA
 
 
 import java.util.Date;
@@ -11,18 +11,18 @@ public class Comment  implements java.io.Serializable {
 
 
      private CommentId id;
+     private Users users;
      private Event event;
-     private User user;
      private Date commentDate;
      private String commentText;
 
     public Comment() {
     }
 
-    public Comment(CommentId id, Event event, User user, Date commentDate, String commentText) {
+    public Comment(CommentId id, Users users, Event event, Date commentDate, String commentText) {
        this.id = id;
+       this.users = users;
        this.event = event;
-       this.user = user;
        this.commentDate = commentDate;
        this.commentText = commentText;
     }
@@ -34,19 +34,19 @@ public class Comment  implements java.io.Serializable {
     public void setId(CommentId id) {
         this.id = id;
     }
+    public Users getUsers() {
+        return this.users;
+    }
+    
+    public void setUsers(Users users) {
+        this.users = users;
+    }
     public Event getEvent() {
         return this.event;
     }
     
     public void setEvent(Event event) {
         this.event = event;
-    }
-    public User getUser() {
-        return this.user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
     }
     public Date getCommentDate() {
         return this.commentDate;

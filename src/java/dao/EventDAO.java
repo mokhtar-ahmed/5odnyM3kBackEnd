@@ -35,7 +35,7 @@ public class EventDAO {
        
         */
         Criteria criteria = session.createCriteria(Event.class)
-                .add(Restrictions.eq("eventName", event.getName()));
+                .add(Restrictions.eq("eventName", event.getEventName()));
         List l= criteria.list();
         if(l.size()>0)
         {
