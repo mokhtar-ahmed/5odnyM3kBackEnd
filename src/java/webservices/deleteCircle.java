@@ -6,13 +6,17 @@
 
 package webservices;
 
-import dao.*;
+import dao.CircleImp;
+import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import pojos.*;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
+import pojos.Circle;
+import pojos.Users;
 
 /**
  *
@@ -28,9 +32,8 @@ public class deleteCircle {
             Circle c = new Gson().fromJson(circle, Circle.class);
             CircleImp circleimp = new CircleImp();
             circleimp.deleteCircle(c);
-            
             JSONObject status=new JSONObject();
-            status.put("closed", "true");
+            status.put("deleted", "true");
             
             return status.toString();
         } catch (JSONException ex) {
@@ -38,5 +41,4 @@ public class deleteCircle {
         }
         return null;
     }
-    
 }

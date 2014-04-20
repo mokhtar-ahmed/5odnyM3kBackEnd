@@ -24,15 +24,19 @@ public class ApplicationConfig extends Application {
      */
     private Set<Class<?>> getRestResourceClasses() {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
-        try {
-            Class<?> jacksonProvider = Class.forName("org.codehaus.jackson.jaxrs.JacksonJsonProvider");
-            resources.add(jacksonProvider);
-            resources.add(SearchEventByDriver.class);
-            resources.add(SearchEventByFromLocation.class);
-            resources.add(SearchEventByToLocation.class);
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(getClass().getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        resources.add(webservices.AddCircle.class);
+        resources.add(webservices.AddUserToCircle.class);
+        resources.add(webservices.EventManagement.class);
+        resources.add(webservices.Register.class);
+        resources.add(webservices.SearchEventByDriver.class);
+        resources.add(webservices.SearchEventByFromLocation.class);
+        resources.add(webservices.SearchEventByToLocation.class);
+        resources.add(webservices.SendNotificationService.class);
+        resources.add(webservices.UpdateCircle.class);
+        resources.add(webservices.ViewUserNotification.class);
+        resources.add(webservices.deleteCircle.class);
+        resources.add(webservices.viewAllCircles.class);
+        resources.add(webservices.viewCircleDetails.class);
         return resources;
     }
     

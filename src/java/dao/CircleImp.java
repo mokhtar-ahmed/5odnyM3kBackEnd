@@ -1,20 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 package dao;
 
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pojos.*;
+import pojos.Circle;
+import pojos.ExistIn;
+import pojos.Users;
 
 /**
  *
  * @author Rehab
  */
 public class CircleImp implements CircleInt{
-
+    static Session session;
+    public CircleImp()
+    {
+         session= Controller.getSessionFactory().openSession();
+    }
+    static Session getSession()
+    {
+        return session;
+    }
+    
     @Override
     public void addCircle(Circle circle) {
-        Session session=Controller.getSessionFactory().openSession();
         session.beginTransaction();
         session.persist(circle);
         session.getTransaction().commit();
@@ -32,8 +47,8 @@ public class CircleImp implements CircleInt{
             System.out.println("user "+ i + "= " + c.getCircleName());
         }
         return list1;*/
-        Session session=Controller.getSessionFactory().openSession();
-        String str1 = "from Circle c where c.users.id like :uid";
+//        Session session=Controller.getSessionFactory().openSession();
+        String str1 = "from Circle c where c.users.id =:uid";
         
         Query q1 = session.createQuery(str1).setInteger("uid", user.getId());
         List<Circle> list1 = q1.list();
@@ -42,24 +57,22 @@ public class CircleImp implements CircleInt{
 
     @Override
     public void editCircle(Circle circle) {
-        Session session=Controller.getSessionFactory().openSession();
         session.beginTransaction();
-        session.saveOrUpdate(circle);
+        session.merge(circle);
         session.getTransaction().commit();
     }
 
     @Override
     public void deleteCircle(Circle circle) {
-        Session session=Controller.getSessionFactory().openSession();
         Circle c=retrieveCircleById(circle);
         session.beginTransaction();
         session.delete(c);
         session.getTransaction().commit();
+        
     }
 
     @Override
     public void blockUserFromCircle(ExistIn ex) {
-        Session session=Controller.getSessionFactory().openSession();
         session.beginTransaction();
         ex.setBolckStatue("open");
         session.persist(ex);
@@ -68,7 +81,6 @@ public class CircleImp implements CircleInt{
 
     @Override
     public boolean isBlocked(ExistIn ex) {
-        Session session=Controller.getSessionFactory().openSession();
         session.beginTransaction();
         if(ex.getBolckStatue().equals("open"))
         return true;
@@ -76,17 +88,24 @@ public class CircleImp implements CircleInt{
     }
 
     @Override
-    public void addUserToCircle(Users user, Circle circle) {////////
-        Session session=Controller.getSessionFactory().openSession();
+    public void addUserToCircle(Users user, Circle circle) {
         session.beginTransaction();
         ExistIn ex=new ExistIn(user, circle, "open");
         session.persist(ex);
         session.getTransaction().commit();
     }
+    
+    @Override
+    public void updateCircle(Circle circle,Users user) {
+        //needed to be seen 
+        session.beginTransaction();
+        ExistIn ex=new ExistIn(user, circle, "open");
+        session.saveOrUpdate(ex);
+        session.getTransaction().commit();
+    }
 
     @Override
     public void removeUserFromCircle(Users user, Circle circle) {
-        Session session=Controller.getSessionFactory().openSession();
         session.beginTransaction();
         ExistIn ex=new ExistIn(user, circle, "open");
         ExistIn e=retrieveExistInUser(ex);
@@ -102,29 +121,29 @@ public class CircleImp implements CircleInt{
 
     @Override
     public List<Users> retrieveCircleUsers( Circle circle) {
-        Session session=Controller.getSessionFactory().openSession();
-        String str1 = "from Circle c , ExistIn e where c.idCircle=e.circle.idCircle";
-        //String str1
-        Query q1 = session.createQuery(str1);//.setInteger("uid", user.getCircles().);
-        List<ExistIn> list1 = q1.list();
-        List<Users> list2 = null;
-        for (int i = 0; i < list1.size(); i++) {
-            System.out.println(list1.get(i).getUsers().getName());
-            //list2.add(list1.get(i).getUsers());
-        }
-        return list2;
+//        String str1 = "from Circle c , ExistIn e where c.idCircle=e.circle.idCircle";
+        String str1="SELECT u FROM Users u , ExistIn e , Circle c where e.circle.idCircle = c.idCircle and e.users.id = u.id and c.idCircle =:cid";
+        Query q1 = session.createQuery(str1).setInteger("cid", circle.getIdCircle());
+        List<Users> list1=q1.list();
+//        List<ExistIn> list1 = q1.list();
+//        List<Users> list2 = null;
+//        for (int i = 0; i < list1.size(); i++) {
+//            System.out.println(list1.get(i).getUsers().getName());
+//            //list2.add(list1.get(i).getUsers());
+//        }
+        return list1;
     }
 
     @Override
     public Circle retrieveCircleById(Circle circle) {
-        Session session=Controller.getSessionFactory().openSession();
+        //Session session=Controller.getSessionFactory().openSession();
         List<Circle> x;
-        String s="from Circle c where c.idCircle like :id";
+        String s="from Circle c where c.idCircle =:id";
         Query q = session.createQuery(s).setInteger("id",circle.getIdCircle()); 
         x=q.list();
         session.beginTransaction();
         session.getTransaction().commit();
-        
+        //session.close();
         if(!x.isEmpty())
             return x.get(0);
         else return null;
@@ -134,6 +153,22 @@ public class CircleImp implements CircleInt{
     public ExistIn retrieveExistInUser(ExistIn ex) {
         
         return null;
+    }
+
+    @Override
+    public Circle retrieveCircleByUserIdAndCircleName(Circle circle) {
+//        List<Circle> x;
+//        String s="from Circle c where c.circleName =:circleName and c.users.id =:id";
+//        Query q = session.createQuery(s).setString("circleName", circle.getCircleName()).setInteger("id",circle.getUsers().getId()); 
+//        x=q.list();
+//        session.beginTransaction();
+//        session.getTransaction().commit();
+//        //session.close();
+//        if(!x.isEmpty())
+//            return x.get(0);
+//        else return null;
+        
+        return circle;
     }
     
 }

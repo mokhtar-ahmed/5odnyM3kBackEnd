@@ -7,7 +7,9 @@
 package dao;
 
 import java.util.List;
-import pojos.*;
+import pojos.Circle;
+import pojos.ExistIn;
+import pojos.Users;
 
 /**
  *
@@ -15,6 +17,7 @@ import pojos.*;
  */
 public interface CircleInt {
     public void addCircle(Circle circle);
+    public void updateCircle(Circle circle,Users user);
     public List<Circle> retrieveUserCircles(Users user);//Users user);
     public void editCircle(Circle circle);
     public void deleteCircle(Circle circle);
@@ -23,7 +26,10 @@ public interface CircleInt {
     public void addUserToCircle(Users user,Circle circle);//
     public void removeUserFromCircle(Users user,Circle circle);//
     public Circle retrieveCircleByName(Users user,Circle circle);//
+    
+    public Circle retrieveCircleByUserIdAndCircleName(Circle circle);
     public List<Users> retrieveCircleUsers(Circle circle);//
     public Circle retrieveCircleById(Circle circle);
     public ExistIn retrieveExistInUser(ExistIn ex);
+    
 }

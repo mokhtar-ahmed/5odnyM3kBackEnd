@@ -6,6 +6,7 @@
 
 package dao;
 
+import pojos.ExistIn;
 import pojos.Users;
 
 /**
@@ -15,5 +16,8 @@ import pojos.Users;
 public interface UsersInt {
     public void addUser(Users user);
     public Users retrieveUserByUserName(Users user);
+    public Users retrieveUserById(Users user);
+    
+    public void addUserToCircle(ExistIn e);
     
 }
