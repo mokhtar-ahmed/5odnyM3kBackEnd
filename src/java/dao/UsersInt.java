@@ -6,18 +6,16 @@
 
 package dao;
 
-import pojos.ExistIn;
-import pojos.Users;
+import pojo.ExistIn;
+import pojo.User;
 
 /**
  *
  * @author Rehab
  */
 public interface UsersInt {
-    public void addUser(Users user);
-    public Users retrieveUserByUserName(Users user);
-    public Users retrieveUserById(Users user);
-    
-    public void addUserToCircle(ExistIn e);
+    public void addUser(User user);
+    public User retrieveUserByUserName(User user);
+    public User retrieveUserById(User user);
     
 }

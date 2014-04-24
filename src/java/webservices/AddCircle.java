@@ -21,10 +21,10 @@ import javax.ws.rs.core.MediaType;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import pojos.Circle;
-import pojos.ExistIn;
-import pojos.ExistInId;
-import pojos.Users;
+import pojo.Circle;
+import pojo.ExistIn;
+import pojo.ExistInId;
+import pojo.User;
 
 /**
  *
@@ -41,7 +41,7 @@ public class AddCircle {
     {
         try {
             System.out.println(circle.toString());
-            Users owner=new Users();
+            User owner=new User();
             owner.setId(circle.getInt("userId"));
             UserImp userimp=new UserImp();
             owner=userimp.retrieveUserById(owner);
@@ -56,14 +56,14 @@ public class AddCircle {
             for(int i=0;i<friends.length();i++)
             {
                 System.out.println(friends.get(i));
-                Users u =new Users();
+                User u =new User();
                 JSONObject o=friends.getJSONObject(i);
                 u.setId(o.getInt("userId"));
                 u=userimp.retrieveUserById(u);
                 ExistIn existIn=new ExistIn(u, circle1, "0");
-                ExistInId id=new ExistInId(u.getId(), circle1.getIdCircle());
+                ExistInId id=new ExistInId(u.getId(), circle1.getId());
                 existIn.setId(id);
-                userimp.addUserToCircle(existIn);
+                circleImp.addUserToCircle(existIn);
             }
             
             JSONObject status=new JSONObject();

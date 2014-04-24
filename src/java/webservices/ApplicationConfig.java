@@ -25,7 +25,9 @@ public class ApplicationConfig extends Application {
     private Set<Class<?>> getRestResourceClasses() {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
         resources.add(webservices.AddCircle.class);
+        resources.add(webservices.AddPhoneNo.class);
         resources.add(webservices.AddUserToCircle.class);
+        resources.add(webservices.DeleteUserFromCircle.class);
         resources.add(webservices.EventManagement.class);
         resources.add(webservices.Register.class);
         resources.add(webservices.SearchEventByDriver.class);

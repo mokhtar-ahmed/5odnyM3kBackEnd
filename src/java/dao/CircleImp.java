@@ -6,12 +6,13 @@
 
 package dao;
 
+import static dao.UserImp.session;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pojos.Circle;
-import pojos.ExistIn;
-import pojos.Users;
+import pojo.Circle;
+import pojo.ExistIn;
+import pojo.User;
 
 /**
  *
@@ -36,7 +37,7 @@ public class CircleImp implements CircleInt{
     }
 
     @Override
-    public List<Circle> retrieveUserCircles(Users user){
+    public List<Circle> retrieveUserCircles(User user){
         /*Session session=Controller.sessionFactory.openSession();
         String str1 = "from Users u, Circle c , ExistIn e where u.id=e.users.id and c.idCircle=e.circle.idCircle";
         
@@ -49,7 +50,6 @@ public class CircleImp implements CircleInt{
         return list1;*/
 //        Session session=Controller.getSessionFactory().openSession();
         String str1 = "from Circle c where c.users.id =:uid";
-        
         Query q1 = session.createQuery(str1).setInteger("uid", user.getId());
         List<Circle> list1 = q1.list();
         return list1;
@@ -65,10 +65,20 @@ public class CircleImp implements CircleInt{
     @Override
     public void deleteCircle(Circle circle) {
         Circle c=retrieveCircleById(circle);
+        emptyCircle(circle);
         session.beginTransaction();
         session.delete(c);
         session.getTransaction().commit();
         
+    }
+    
+    
+    @Override
+    public void emptyCircle(Circle circle) {
+        session.beginTransaction();
+        String s="delete from ExistIn e where e.circle.idCircle =:cid ";
+        Query q=session.createQuery(s).setInteger("cid", circle.getId());
+        session.getTransaction().commit();
     }
 
     @Override
@@ -88,15 +98,14 @@ public class CircleImp implements CircleInt{
     }
 
     @Override
-    public void addUserToCircle(Users user, Circle circle) {
+    public void addUserToCircle(ExistIn e) {
         session.beginTransaction();
-        ExistIn ex=new ExistIn(user, circle, "open");
-        session.persist(ex);
+        session.persist(e);
         session.getTransaction().commit();
     }
     
     @Override
-    public void updateCircle(Circle circle,Users user) {
+    public void updateCircle(Circle circle,User user) {
         //needed to be seen 
         session.beginTransaction();
         ExistIn ex=new ExistIn(user, circle, "open");
@@ -105,26 +114,25 @@ public class CircleImp implements CircleInt{
     }
 
     @Override
-    public void removeUserFromCircle(Users user, Circle circle) {
+    public void removeUserFromCircle(ExistIn e) {
+        e=retrieveExistInUser(e);
         session.beginTransaction();
-        ExistIn ex=new ExistIn(user, circle, "open");
-        ExistIn e=retrieveExistInUser(ex);
         session.delete(e);
         session.getTransaction().commit();
     }
 
     @Override
-    public Circle retrieveCircleByName(Users user, Circle circle) {
+    public Circle retrieveCircleByName(User user, Circle circle) {
         return null;
         
     }
 
     @Override
-    public List<Users> retrieveCircleUsers( Circle circle) {
+    public List<User> retrieveCircleUsers( Circle circle) {
 //        String str1 = "from Circle c , ExistIn e where c.idCircle=e.circle.idCircle";
         String str1="SELECT u FROM Users u , ExistIn e , Circle c where e.circle.idCircle = c.idCircle and e.users.id = u.id and c.idCircle =:cid";
-        Query q1 = session.createQuery(str1).setInteger("cid", circle.getIdCircle());
-        List<Users> list1=q1.list();
+        Query q1 = session.createQuery(str1).setInteger("cid", circle.getId());
+        List<User> list1=q1.list();
 //        List<ExistIn> list1 = q1.list();
 //        List<Users> list2 = null;
 //        for (int i = 0; i < list1.size(); i++) {
@@ -139,7 +147,7 @@ public class CircleImp implements CircleInt{
         //Session session=Controller.getSessionFactory().openSession();
         List<Circle> x;
         String s="from Circle c where c.idCircle =:id";
-        Query q = session.createQuery(s).setInteger("id",circle.getIdCircle()); 
+        Query q = session.createQuery(s).setInteger("id",circle.getId()); 
         x=q.list();
         session.beginTransaction();
         session.getTransaction().commit();
@@ -150,9 +158,17 @@ public class CircleImp implements CircleInt{
     }
 
     @Override
-    public ExistIn retrieveExistInUser(ExistIn ex) {
-        
-        return null;
+    public ExistIn retrieveExistInUser(ExistIn e) {
+        List<ExistIn> x;
+        String s="from ExistIn e where e.users.id =:uid and e.circle.idCircle =:cid";
+        Query q = session.createQuery(s).setInteger("uid",e.getUser().getId()).setInteger("cid", e.getCircle().getId()); 
+        x=q.list();
+        session.beginTransaction();
+        session.getTransaction().commit();
+        //session.close();
+        if(!x.isEmpty())
+            return x.get(0);
+        else return null;
     }
 
     @Override
@@ -170,5 +186,6 @@ public class CircleImp implements CircleInt{
         
         return circle;
     }
+
     
 }

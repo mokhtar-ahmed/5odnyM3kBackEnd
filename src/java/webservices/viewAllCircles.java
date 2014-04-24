@@ -9,26 +9,16 @@ package webservices;
 
 import dao.CircleImp;
 import dao.UserImp;
-import antlr.debug.MessageAdapter;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.sun.jersey.multipart.FormDataParam;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import pojos.Circle;
-import pojos.Users;
+import pojo.Circle;
+import pojo.User;
 
 
 /**
@@ -45,10 +35,10 @@ public class viewAllCircles {
     public String viewCircles(@FormParam(value = "user")String user)//JSONObject user)
     {
         System.out.println("hellloooooooooooooooooooooooooo");
-        Users us = new Gson().fromJson(user, Users.class);
+        User us = new Gson().fromJson(user, User.class);
         CircleImp circleimp = new CircleImp();
         UserImp u=new UserImp();
-        Users us1 = u.retrieveUserByUserName(us);
+        User us1 = u.retrieveUserByUserName(us);
         List<Circle> c=circleimp.retrieveUserCircles(us1);
         
 //        Gson g = new Gson();
@@ -61,7 +51,7 @@ public class viewAllCircles {
         {
             try {
                 String name =c.get(i).getCircleName();
-                int cid=c.get(i).getIdCircle();
+                int cid=c.get(i).getId();
                 JSONObject circledata=new JSONObject();
                 circledata.put("circleName", name);
                 circledata.put("circleId", cid);

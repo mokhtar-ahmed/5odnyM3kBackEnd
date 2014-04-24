@@ -6,7 +6,7 @@
 
 package dao;
 
-import pojos.Phone;
+import pojo.Phone;
 
 /**
  *
@@ -14,5 +14,5 @@ import pojos.Phone;
  */
 public interface PhoneInt {
     public void addPhone(Phone phone);
-    
+    public void deletePhone(Phone phone);
 }

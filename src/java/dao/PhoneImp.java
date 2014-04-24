@@ -6,21 +6,36 @@
 package dao;
 
 import org.hibernate.Session;
-import pojos.Phone;
+import pojo.Phone;
 
 /**
  *
  * @author Rehab
  */
 public class PhoneImp implements PhoneInt {
-
+    static Session session;
+    public PhoneImp()
+    {
+         session= Controller.getSessionFactory().openSession();
+    }
+    static Session getSession()
+    {
+        return session;
+    }
     @Override
     public void addPhone(Phone phone) {
-        Session session =Controller.getSessionFactory().openSession();
+//        Session session =Controller.getSessionFactory().openSession();
         session.beginTransaction();
         session.persist(phone);
         session.getTransaction().commit();
-        session.close();
+//        session.close();
+    }
+
+    @Override
+    public void deletePhone(Phone phone) {
+        session.beginTransaction();
+        session.delete(phone);
+        session.getTransaction().commit();
     }
 
 }

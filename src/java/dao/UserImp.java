@@ -6,13 +6,14 @@
 
 package dao;
 
+import static dao.CircleImp.session;
 import java.util.List;
 import org.hibernate.EntityMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pojos.Circle;
-import pojos.ExistIn;
-import pojos.Users;
+import pojo.Circle;
+import pojo.ExistIn;
+import pojo.User;
 
 /**
  *
@@ -30,15 +31,15 @@ public class UserImp implements UsersInt{
     }
     
     @Override
-    public void addUser(Users user) {
+    public void addUser(User user) {
         session.beginTransaction();
         session.persist(user);
         session.getTransaction().commit();
     }
 
     @Override
-    public Users retrieveUserByUserName(Users user) {
-        List<Users> x;
+    public User retrieveUserByUserName(User user) {
+        List<User> x;
         String s="from Users u where u.username =:username";
         Query q = session.createQuery(s).setString("username",user.getUsername()); 
         x=q.list();
@@ -51,8 +52,8 @@ public class UserImp implements UsersInt{
     }
 
     @Override
-    public Users retrieveUserById(Users user) {
-        List<Users> x;
+    public User retrieveUserById(User user) {
+        List<User> x;
         String s="from Users u where u.id =:uid";
         Query q = session.createQuery(s).setInteger("uid",user.getId()); 
         x=q.list();
@@ -64,11 +65,4 @@ public class UserImp implements UsersInt{
         else return null;
     }
 
-    @Override
-    public void addUserToCircle(ExistIn e) {
-        session.beginTransaction();
-        session.persist(e);
-        session.getTransaction().commit();
-    }
-    
 }

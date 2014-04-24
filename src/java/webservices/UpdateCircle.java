@@ -21,10 +21,10 @@ import javax.ws.rs.core.MediaType;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import pojos.Circle;
-import pojos.ExistIn;
-import pojos.ExistInId;
-import pojos.Users;
+import pojo.Circle;
+import pojo.ExistIn;
+import pojo.ExistInId;
+import pojo.User;
 
 /**
  *
@@ -41,7 +41,7 @@ public class UpdateCircle {
     {
         try {
             System.out.println(circle.toString());
-            Users owner=new Users();
+            User owner=new User();
             
             owner.setId(circle.getInt("userId"));
             
@@ -52,9 +52,9 @@ public class UpdateCircle {
             CircleImp c=new CircleImp();
             int x=circle.getInt("circleId");
             circle1=new Circle();
-            circle1.setIdCircle(x);
+            circle1.setId(x);
             circle1=c.retrieveCircleById(circle1);
-            circle1.setUsers(owner);
+            circle1.setUser(owner);
             circle1.setCircleName(circle.getString("circleName"));
             
             
@@ -67,7 +67,7 @@ public class UpdateCircle {
             status.put("updated", "true");
             return status;
         } catch (JSONException ex) {
-            Logger.getLogger(AddCircle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(UpdateCircle.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

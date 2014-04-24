@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 24, 2014 1:19:18 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="pojo.UserStatue" table="user_statue" catalog="carpooling">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="statue" type="string">
+            <column name="statue" length="45" not-null="true" unique="true" />
+        </property>
+        <set name="joinEvents" table="join_event" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_Statue_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.JoinEvent" />
+        </set>
+    </class>
+</hibernate-mapping>

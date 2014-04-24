@@ -26,34 +26,36 @@ import pojo.User;
  *
  * @author Rehab
  */
-@Path("addUserToCircle")
-public class AddUserToCircle {
+@Path("deleteUserFromCircle")
+public class DeleteUserFromCircle {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("/addUser")
-    public JSONObject addUserToCirclee(@FormParam(value = "exist") JSONObject exist) {
+    @Path("/deleteUser")
+    public JSONObject deleteUserFromCirclee(@FormParam(value = "exist") JSONObject exist) {
         try {
             User u = new User();
             u.setId(exist.getInt("userId"));
             UserImp userImp=new UserImp();
             u = userImp.retrieveUserById(u);
+            
             Circle c=new Circle();
             c.setId(exist.getInt("circleId"));
             CircleImp circleImp=new CircleImp();
             c=circleImp.retrieveCircleById(c);
+            
             ExistIn existIn = new ExistIn(u, c, "0");
             ExistInId id = new ExistInId(u.getId(), c.getId());
             existIn.setId(id);
-            circleImp.addUserToCircle(existIn);
+            circleImp.removeUserFromCircle(existIn);
             
             JSONObject status=new JSONObject();
-            status.put("added", "true");
+            status.put("deleted", "true");
             return status;
             
         } catch (JSONException ex) {
-            Logger.getLogger(AddUserToCircle.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeleteUserFromCircle.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }

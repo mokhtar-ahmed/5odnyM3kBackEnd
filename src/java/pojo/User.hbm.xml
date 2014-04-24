@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 24, 2014 1:19:18 PM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="pojo.User" table="user" catalog="carpooling">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="45" not-null="true" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="45" />
+        </property>
+        <property name="dateOfBirth" type="date">
+            <column name="date_of_birth" length="10" />
+        </property>
+        <property name="pushNotificationId" type="string">
+            <column name="push_notification_id" length="45" unique="true" />
+        </property>
+        <property name="rank" type="string">
+            <column name="rank" length="45" />
+        </property>
+        <property name="userImage" type="string">
+            <column name="user_image" length="250" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" unique="true" />
+        </property>
+        <property name="facebookKey" type="string">
+            <column name="facebook_Key" length="45" unique="true" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" length="45" not-null="true" />
+        </property>
+        <set name="joinEvents" table="join_event" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.JoinEvent" />
+        </set>
+        <set name="circles" table="circle" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="Users_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Circle" />
+        </set>
+        <set name="phones" table="phone" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Phone" />
+        </set>
+        <set name="comments" table="comment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Comment" />
+        </set>
+        <set name="notifications" table="notification" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Notification" />
+        </set>
+        <set name="events" table="event" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.Event" />
+        </set>
+        <set name="existIns" table="exist_in" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="User_id" not-null="true" />
+            </key>
+            <one-to-many class="pojo.ExistIn" />
+        </set>
+    </class>
+</hibernate-mapping>

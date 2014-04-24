@@ -20,8 +20,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import pojos.Circle;
-import pojos.Users;
+import pojo.Circle;
+import pojo.User;
 
 /**
  *
@@ -44,9 +44,9 @@ public class viewCircleDetails {
 
             JSONObject circleData = new JSONObject();
             circleData.put("circleName", c.getCircleName());
-            circleData.put("circleId", c.getIdCircle());//{circleId","circleName"}
+            circleData.put("circleId", c.getId());//{circleId","circleName"}
 
-            List<Users> s = circleimp.retrieveCircleUsers(c);
+            List<User> s = circleimp.retrieveCircleUsers(c);
             JSONObject u=new JSONObject();
             
             for (int i = 0; i < s.size(); i++) {
@@ -61,7 +61,7 @@ public class viewCircleDetails {
                     user1.put("mail", mail);
                     u.put("user"+ i, user1);
                 } catch (JSONException ex) {
-                    Logger.getLogger(viewAllCircles.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(viewCircleDetails.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             

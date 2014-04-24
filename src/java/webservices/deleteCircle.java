@@ -15,8 +15,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import pojos.Circle;
-import pojos.Users;
+import pojo.Circle;
+import pojo.User;
 
 /**
  *
