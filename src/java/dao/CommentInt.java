@@ -6,7 +6,7 @@
 
 package dao;
 
-import pojos.Comment;
+import pojo.Comment;
 
 /**
  *

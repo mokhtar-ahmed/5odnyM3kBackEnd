@@ -1,7 +1,7 @@
 package webservices;
 
 import org.json.simple.JSONObject;
-import pojos.Event;
+import pojo.Event;
 
 class JSONUtils {
 
@@ -19,7 +19,7 @@ class JSONUtils {
   
         obj.put(DATE,event.getEventDate());
         obj.put(EVENT_STATE,event.getEventStatue());
-        obj.put(ID,event.getIdEvent());
+        obj.put(ID,event.getId());
         obj.put(LOCATION,event.getLocation());
         obj.put(NAME,event.getEventName());
         obj.put(NO_OF_SLOTS,event.getNoOfSlots());
@@ -37,7 +37,7 @@ class JSONUtils {
      if((String)userObject.get(ID) != null)
         id =  Integer.parseInt((String)userObject.get(ID));
       
-      event.setIdEvent(id);
+      event.setId(id);
      
       event.setEventName((String)userObject.get( NAME ));
       event.setEventStatue((String)userObject.get( EVENT_STATE));

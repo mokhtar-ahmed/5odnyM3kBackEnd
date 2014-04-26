@@ -12,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 import org.json.simple.JSONObject;
 import dao.*;
 import java.text.ParseException;
-import pojos.*;
+import pojo.*;
 /**
  *
  * @author Mo5a

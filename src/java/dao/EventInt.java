@@ -7,20 +7,20 @@
 package dao;
 
 import java.util.List;
-import pojos.*;
+import pojo.*;
 
 /**
  *
  * @author Rehab
  */
 public interface EventInt {
-    public void addEvent(Event event,Users user);
+    public void addEvent(Event event,User user);
     //public void cancelEvent(Event event,Users user);
-    public void closeEventTimeOut(Event event,Users user);
-    public void setEventStatus(Users user,Event event);
-    public Event editEvent(Users user,Event event);
+    public void closeEventTimeOut(Event event,User user);
+    public void setEventStatus(User user,Event event);
+    public Event editEvent(User user,Event event);
     public List<Event> retrieveEvetByLocation(Location location);
-    public List<Event> retreiveEventByUser(Users user);
+    public List<Event> retreiveEventByUser(User user);
     //increase/decrease no of slots
     //setUserStatus,joinEvent,addCircleToEvent,removeEventFromCircle,retrieveUsersJoinEvent-->with nourhan
     public void setUserStatus();

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pojos.*;
+import pojo.*;
 
 /**
  *
@@ -37,7 +37,7 @@ public class NotificationHome {
          return notificationList;
     }
  
-    public  List<Notification>getUserNotificationsOnEvent(Users user , Event event){
+    public  List<Notification>getUserNotificationsOnEvent(User user , Event event){
  
          Query createQuery = session.createQuery("from Notification n where n.users = :user and n.event = :event ").setEntity("user", user).setEntity("event", event);
          List<Notification> notificationList = createQuery.list();
@@ -45,14 +45,14 @@ public class NotificationHome {
     }
      
        
-    public List<Notification>viewUserNotification(Users user){
+    public List<Notification>viewUserNotification(User user){
          Query createQuery = session.createQuery("from Notification n where n.users = :user ").setEntity("user", user);
          List<Notification> notificationList = createQuery.list();
          return notificationList;
     
     }
     
-    public List<Notification>getUserNotificationsByDate(Users user , Date date){
+    public List<Notification>getUserNotificationsByDate(User user , Date date){
          Query createQuery = session.createQuery("from Notification n where n.users = :user and n.notificationDate = :date ").setEntity("user", user).setEntity("date", date);
          List<Notification> notificationList = createQuery.list();
          return notificationList;

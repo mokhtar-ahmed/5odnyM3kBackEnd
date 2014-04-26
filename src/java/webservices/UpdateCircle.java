@@ -11,7 +11,6 @@ import dao.UserImp;
 import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.scene.media.Media;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;

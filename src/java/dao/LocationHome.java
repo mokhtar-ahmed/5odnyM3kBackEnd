@@ -1,7 +1,7 @@
 package dao;
 
 import java.util.List;
-import pojos.Location;
+import pojo.Location;
 
 
 public class LocationHome {

@@ -9,7 +9,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import pojos.*;
+import pojo.*;
 
 
 
@@ -29,7 +29,7 @@ public class SearchEventByDriver {
       
       JSONArray ev = new JSONArray();
     
-      List<Users> user =  new UserHome().getUser(Integer.parseInt(idStr));
+      List<User> user =  new UserHome().getUser(Integer.parseInt(idStr));
        
       if(user.isEmpty() == false){
           

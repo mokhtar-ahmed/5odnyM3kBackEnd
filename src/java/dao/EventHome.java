@@ -4,7 +4,7 @@ package dao;
 import java.util.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import pojos.*;
+import pojo.*;
 
 public class EventHome {
 
@@ -19,7 +19,7 @@ public class EventHome {
     public Event getEventById(int eventId) {
         return (Event) session.get(Event.class, eventId);
     }
-    public List<Event> searchEventByDriver(Users user){
+    public List<Event> searchEventByDriver(User user){
         
           Query createQuery = session.createQuery("from Event v where v.user = :user ").setEntity("user", user);
           List<Event> u = createQuery.list();
