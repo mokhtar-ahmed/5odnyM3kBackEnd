@@ -8,7 +8,6 @@ package webservices;
 
 import dao.CircleImp;
 import dao.UserImp;
-import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;
@@ -17,12 +16,9 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import pojo.Circle;
-import pojo.ExistIn;
-import pojo.ExistInId;
 import pojo.User;
 
 /**
