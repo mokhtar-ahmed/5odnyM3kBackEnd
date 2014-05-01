@@ -64,5 +64,11 @@ public class UserImp implements UsersInt{
             return x.get(0);
         else return null;
     }
+    
+    public void edit(User user){
+        session.beginTransaction();
+        session.merge(user);
+        session.getTransaction().commit();
+    }
 
 }

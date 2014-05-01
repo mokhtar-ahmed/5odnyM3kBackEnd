@@ -6,7 +6,6 @@
 
 package dao;
 
-import pojo.ExistIn;
 import pojo.User;
 
 /**
@@ -17,5 +16,6 @@ public interface UsersInt {
     public void addUser(User user);
     public User retrieveUserByUserName(User user);
     public User retrieveUserById(User user);
+    public void edit(User user);
     
 }
