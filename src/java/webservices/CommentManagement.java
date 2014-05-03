@@ -89,7 +89,7 @@ public class CommentManagement {
     {
         Comment comm = new Comment();
         EventDAO edao = new EventDAO();
-        UserDAO udao = new UserDAO();
+        UserImp udao = new UserImp();
         CommentDAo cda = new CommentDAo();
         try {
             JSONObject comment = new JSONObject(input);
@@ -107,7 +107,9 @@ public class CommentManagement {
             {
                 JSONObject user=comment.getJSONObject("owner");
                     int userId=user.getInt("id");
-                    User myUser=udao.retrieveUserById(userId);
+                    User u=new User();
+                    u.setId(userId);
+                    User myUser=udao.retrieveUserById(u);
                     comm.setUser(myUser);
             }
             if(!comment.isNull("text"))

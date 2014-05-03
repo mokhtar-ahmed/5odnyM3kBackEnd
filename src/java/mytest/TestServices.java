@@ -8,7 +8,7 @@ package mytest;
 
 
 import dao.LocationDAO;
-import dao.UserDAO;
+//import dao.UserDAO;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.logging.Level;

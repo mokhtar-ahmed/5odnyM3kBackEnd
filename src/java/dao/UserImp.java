@@ -7,10 +7,14 @@
 package dao;
 
 import static dao.CircleImp.session;
+import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.Criteria;
 import org.hibernate.EntityMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 import pojo.Circle;
 import pojo.ExistIn;
 import pojo.User;
@@ -28,6 +32,13 @@ public class UserImp implements UsersInt{
     static Session getSession()
     {
         return session;
+    }
+    
+    public List<User> getUser(Integer id){
+        
+          Query createQuery = session.createQuery("from User u where u.id = :user ").setString("user", id.toString());
+          List<User> u = createQuery.list();
+          return u;
     }
     
     @Override
@@ -69,6 +80,27 @@ public class UserImp implements UsersInt{
         session.beginTransaction();
         session.merge(user);
         session.getTransaction().commit();
+    }
+    
+    public ArrayList<User> retrieveRegisteredUsers(ArrayList<String> contactList)
+    {
+        ArrayList<User> registeredFriends = new ArrayList<User>();
+        for(int i=0;i<contactList.size();i++)
+        {
+            Criteria criteria = session.createCriteria(User.class);
+            Criterion userPhone =  Restrictions.eq("phone",contactList.get(i));           
+            criteria =  criteria.add(userPhone);
+            User selectedUser = (User) criteria.uniqueResult();
+            if(selectedUser != null)
+            {
+             registeredFriends.add(selectedUser);
+             System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+             System.out.println("USERNAME"+ "     "+selectedUser.getName());
+             System.out.println("USERPHONE" + "           "+selectedUser.getPhone());
+            }
+        }
+        return registeredFriends;
+        
     }
 
 }

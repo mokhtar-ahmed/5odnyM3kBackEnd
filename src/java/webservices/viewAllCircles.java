@@ -9,8 +9,9 @@ package webservices;
 
 import dao.CircleImp;
 import dao.UserImp;
-import com.google.gson.Gson;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -35,17 +36,20 @@ public class viewAllCircles {
     public String viewCircles(@FormParam(value = "user")String user)//JSONObject user)
     {
         System.out.println("hellloooooooooooooooooooooooooo");
-        User us = new Gson().fromJson(user, User.class);
+        JSONObject o;
+        User us = null;
+        try {
+            o = new JSONObject(user);
+            us= new User();
+            us.setId(o.getInt("userId"));
+        } catch (JSONException ex) {
+            Logger.getLogger(viewAllCircles.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         CircleImp circleimp = new CircleImp();
         UserImp u=new UserImp();
         User us1 = u.retrieveUserByUserName(us);
         List<Circle> c=circleimp.retrieveUserCircles(us1);
-        
-//        Gson g = new Gson();
-//        System.out.println("Heey : " + c.get(0).getCircleName());
-//        String x =g.toJson(c);
-//        System.out.println(x);
-        
         JSONObject circles=new JSONObject();
         for(int i=0;i<c.size();i++)
         {

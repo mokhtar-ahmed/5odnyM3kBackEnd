@@ -4,7 +4,8 @@
  */
 package webservices;
 import dao.EventHome;
-import dao.UserHome;
+import dao.UserImp;
+//import dao.UserHome;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +21,7 @@ public class NotificationUtil {
     public static Notification convertJsonToNotification(JSONObject obj) throws ParseException{
        
         Event event = new EventHome().getEventById(Integer.parseInt((String)obj.get("eventId")));
-        List<User> users = new UserHome().getUser(Integer.parseInt((String)obj.get("userId")));
+        List<User> users = new UserImp().getUser(Integer.parseInt((String)obj.get("userId")));
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
         Date date = formatter.parse((String)obj.get("notificationDate"));
         

@@ -6,7 +6,6 @@
 package webservices;
 
 import dao.CircleImp;
-import com.google.gson.Gson;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
@@ -38,7 +37,9 @@ public class viewCircleDetails {
     public JSONObject viewcircle(@PathParam(value = "user") String circle) {
         try {
             System.out.println(circle);
-            Circle c1=new Gson().fromJson(circle, Circle.class);
+            JSONObject o =new JSONObject();
+            Circle c1=new Circle();
+            c1.setId(o.getInt("circleId"));
             CircleImp circleimp = new CircleImp();
             Circle c = circleimp.retrieveCircleById(c1);
 

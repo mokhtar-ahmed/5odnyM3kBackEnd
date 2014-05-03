@@ -66,8 +66,10 @@ public class EventManagement {
         try {
             JSONObject myUser = new JSONObject(input);
             int userId= myUser.getInt("userId");
-            UserDAO udao = new UserDAO();
-            User user=udao.retrieveUserById(userId);
+            UserImp udao = new UserImp();
+            User u=new User();
+            u.setId(userId);
+            User user=udao.retrieveUserById(u);
             Set events =user.getEvents();
             
             JSONArray eventJson = new JSONArray();

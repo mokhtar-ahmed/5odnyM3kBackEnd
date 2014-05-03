@@ -8,7 +8,6 @@ package webservices;
 
 import dao.CircleImp;
 import dao.UserImp;
-import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.Consumes;

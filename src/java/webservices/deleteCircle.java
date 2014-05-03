@@ -7,7 +7,6 @@
 package webservices;
 
 import dao.CircleImp;
-import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ws.rs.FormParam;
@@ -29,7 +28,9 @@ public class deleteCircle {
     public String deleteCirclee(@FormParam(value = "circle")String circle)
     {
         try {
-            Circle c = new Gson().fromJson(circle, Circle.class);
+            JSONObject o=new JSONObject(circle);
+            Circle c = new Circle();
+            c.setId(o.getInt("circleId"));
             CircleImp circleimp = new CircleImp();
             circleimp.deleteCircle(c);
             JSONObject status=new JSONObject();

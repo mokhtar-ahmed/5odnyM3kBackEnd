@@ -154,8 +154,10 @@ public class EventUtil {
     {
         try {
             int userID = userjson.getInt("id");
-            UserDAO udao = new UserDAO();
-            User user = udao.retrieveUserById(userID);
+            UserImp udao = new UserImp();
+            User u=new User();
+            u.setId(userID);
+            User user = udao.retrieveUserById(u);
             return user;
         } catch (JSONException ex) {
             Logger.getLogger(EventUtil.class.getName()).log(Level.SEVERE, null, ex);
