@@ -32,25 +32,26 @@ import pojo.User;
 public class AddCircle {
     
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
     @Path("/update")
-    public JSONObject addCirclee(@FormParam(value = "circle")JSONObject circle)
+    public String addCirclee(@FormParam(value = "circle")String circle)
     {
         try {
+            JSONObject o1=new JSONObject(circle);
             System.out.println(circle.toString());
             User owner=new User();
-            owner.setId(circle.getInt("userId"));
+            owner.setId(o1.getInt("userId"));
             UserImp userimp=new UserImp();
             owner=userimp.retrieveUserById(owner);
             System.out.println(owner.getName());
             Circle circle1 = null;
-            circle1 = new Circle(owner, circle.getString("circleName"));
+            circle1 = new Circle(owner, o1.getString("circleName"));
             CircleImp circleImp=new CircleImp();
             circleImp.addCircle(circle1);
             circle1=circleImp.retrieveCircleByUserIdAndCircleName(circle1);
             
-            JSONArray friends=circle.getJSONArray("friends");
+            JSONArray friends=o1.getJSONArray("friends");
             for(int i=0;i<friends.length();i++)
             {
                 System.out.println(friends.get(i));
@@ -66,7 +67,7 @@ public class AddCircle {
             
             JSONObject status=new JSONObject();
             status.put("added", "true");
-            return status;
+            return status.toString();
         } catch (JSONException ex) {
             Logger.getLogger(AddCircle.class.getName()).log(Level.SEVERE, null, ex);
         }
