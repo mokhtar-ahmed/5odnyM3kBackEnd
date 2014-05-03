@@ -76,7 +76,7 @@ public class CircleImp implements CircleInt{
     @Override
     public void emptyCircle(Circle circle) {
         session.beginTransaction();
-        String s="delete from ExistIn e where e.circle.idCircle =:cid ";
+        String s="delete from ExistIn e where e.circle.id =:cid ";
         Query q=session.createQuery(s).setInteger("cid", circle.getId());
         session.getTransaction().commit();
     }
@@ -130,7 +130,7 @@ public class CircleImp implements CircleInt{
     @Override
     public List<User> retrieveCircleUsers( Circle circle) {
 //        String str1 = "from Circle c , ExistIn e where c.idCircle=e.circle.idCircle";
-        String str1="SELECT u FROM Users u , ExistIn e , Circle c where e.circle.idCircle = c.idCircle and e.users.id = u.id and c.idCircle =:cid";
+        String str1="SELECT u FROM User u , ExistIn e , Circle c where e.circle.id = c.id and e.user.id = u.id and c.id =:cid";
         Query q1 = session.createQuery(str1).setInteger("cid", circle.getId());
         List<User> list1=q1.list();
 //        List<ExistIn> list1 = q1.list();
@@ -146,7 +146,7 @@ public class CircleImp implements CircleInt{
     public Circle retrieveCircleById(Circle circle) {
         //Session session=Controller.getSessionFactory().openSession();
         List<Circle> x;
-        String s="from Circle c where c.idCircle =:id";
+        String s="from Circle c where c.id =:id";
         Query q = session.createQuery(s).setInteger("id",circle.getId()); 
         x=q.list();
         session.beginTransaction();
@@ -160,7 +160,7 @@ public class CircleImp implements CircleInt{
     @Override
     public ExistIn retrieveExistInUser(ExistIn e) {
         List<ExistIn> x;
-        String s="from ExistIn e where e.users.id =:uid and e.circle.idCircle =:cid";
+        String s="from ExistIn e where e.user.id =:uid and e.circle.id =:cid";
         Query q = session.createQuery(s).setInteger("uid",e.getUser().getId()).setInteger("cid", e.getCircle().getId()); 
         x=q.list();
         session.beginTransaction();

@@ -51,7 +51,7 @@ public class UserImp implements UsersInt{
     @Override
     public User retrieveUserByUserName(User user) {
         List<User> x;
-        String s="from Users u where u.username =:username";
+        String s="from User u where u.username =:username";
         Query q = session.createQuery(s).setString("username",user.getUsername()); 
         x=q.list();
         session.beginTransaction();
@@ -65,7 +65,7 @@ public class UserImp implements UsersInt{
     @Override
     public User retrieveUserById(User user) {
         List<User> x;
-        String s="from Users u where u.id =:uid";
+        String s="from User u where u.id =:uid";
         Query q = session.createQuery(s).setInteger("uid",user.getId()); 
         x=q.list();
         session.beginTransaction();
