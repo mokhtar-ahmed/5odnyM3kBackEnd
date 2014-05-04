@@ -15,25 +15,39 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import org.apache.commons.codec.binary.Base64;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import pojo.User;
 
 /**
  *
  * @author Rehab
  */
-@Path("retrieveImg")
+@Path("/retrieveImg")
 public class RetrieveImg {
-    @Path("hat")
-    public String retreiveImgg(User user) {
+    @POST
+    @Path("/hat")
+    public String retreiveImgg(@FormParam(value = "user")String user) {
         try {
-            String path = "D://" + user.getId() + ".png";
-            URL url = new File(path).toURI().toURL();
+            JSONObject o;
             BufferedImage img ;
+            byte[] imageBytes = null;
+            try {
+                o = new JSONObject(user);
+                String path = "D://" + o.getInt("userId") + ".png";
+            URL url = new File(path).toURI().toURL();
+            
             img = ImageIO.read(url);
             
-            byte[] imageBytes = ((DataBufferByte) img.getData().getDataBuffer()).getData();
+            imageBytes = ((DataBufferByte) img.getData().getDataBuffer()).getData();
+            
+            } catch (JSONException ex) {
+                Logger.getLogger(RetrieveImg.class.getName()).log(Level.SEVERE, null, ex);
+            }
             System.out.println(imageBytes);
             
             String s = encodeImage(imageBytes);

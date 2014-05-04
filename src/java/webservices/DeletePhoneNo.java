@@ -24,8 +24,9 @@ import pojo.User;
  *
  * @author Rehab
  */
+@Path("/deletePhone")
 public class DeletePhoneNo {
-    @Path("delete")
+    @Path("/delete")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public JSONObject deletePhonee(@FormParam(value = "phone")JSONObject phone)

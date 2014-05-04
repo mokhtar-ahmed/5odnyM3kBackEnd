@@ -10,11 +10,6 @@ package webservices;
  *
  * @author Rehab
  */
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 import dao.UserImp;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -23,15 +18,19 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import org.apache.commons.codec.binary.Base64;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import pojo.User;
 
 /**
  *
  * @author Rehab
  */
-@Path("saveImg")
+@Path("/saveImg")
 public class SaveImg {
 
     public String saveImgg(byte[] image, User user) {
@@ -41,7 +40,9 @@ public class SaveImg {
             ImageIO.write(img, "png", new File(path));
             user.setUserImage(path);
             UserImp ui=new UserImp();
-            ui.edit(user);
+            User u= new User();
+            u=ui.retrieveUserByUserName(user);
+            ui.edit(u);
 
             return "eshta";
         } catch (IOException ex) {
@@ -54,12 +55,25 @@ public class SaveImg {
         return Base64.decodeBase64(imageDataString);
     }
 
-    @Path("save")
-    public String test(String image, User user) {
+    @POST
+    @Path("/save")
+//    @Consumes(MediaType.APPLICATION_JSON)
+//    @Produces(MediaType.APPLICATION_JSON)
+    public String test(@FormParam(value = "image")String image,@FormParam(value = "user")String user){try {
+        //String image, User user) {
         System.out.println(image);
+        
         byte[] img = decodeImage(image);
-        String s = saveImgg(img, user);
+        JSONObject o =new JSONObject(user);
+        User u=new User();
+        u.setId(o.getInt("userId"));
+        u.setUsername(o.getString("userName"));
+        String s = saveImgg(img, u);
         return s;
+        } catch (JSONException ex) {
+            Logger.getLogger(SaveImg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }
 

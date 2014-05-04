@@ -26,7 +26,7 @@ import pojo.User;
  *
  * @author Rehab
  */
-@Path("deleteUserFromCircle")
+@Path("/deleteUserFromCircle")
 public class DeleteUserFromCircle {
 
     @POST

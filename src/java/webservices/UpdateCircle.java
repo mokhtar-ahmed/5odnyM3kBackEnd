@@ -25,7 +25,7 @@ import pojo.User;
  *
  * @author Rehab
  */
-@Path("updateCircle")
+@Path("/updateCircle")
 public class UpdateCircle {
     
     @POST

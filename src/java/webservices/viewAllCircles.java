@@ -32,7 +32,7 @@ public class viewAllCircles {
     //@Path("/test")
     //@Consumes(MediaType.APPLICATION_JSON)
     //@Produces(MediaType.APPLICATION_JSON)
-    @Path("view")
+    @Path("/view")
     public String viewCircles(@FormParam(value = "user")String user)//JSONObject user)
     {
         System.out.println("hellloooooooooooooooooooooooooo");

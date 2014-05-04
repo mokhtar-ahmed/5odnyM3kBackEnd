@@ -24,10 +24,10 @@ import pojo.User;
  *
  * @author Rehab
  */
-@Path("addPhone")
+@Path("/addPhone")
 public class AddPhoneNo {
     
-    @Path("add")
+    @Path("/add")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public JSONObject addPhonee(@FormParam(value = "phone")JSONObject phone)
