@@ -43,7 +43,7 @@ public class AddUserToCircle {
             c.setId(exist.getInt("circleId"));
             CircleImp circleImp=new CircleImp();
             c=circleImp.retrieveCircleById(c);
-            ExistIn existIn = new ExistIn(u, c, "0");
+            ExistIn existIn = new ExistIn(u, c, "open","false");
             ExistInId id = new ExistInId(u.getId(), c.getId());
             existIn.setId(id);
             circleImp.addUserToCircle(existIn);

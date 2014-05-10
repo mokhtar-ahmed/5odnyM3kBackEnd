@@ -59,7 +59,7 @@ public class AddCircle {
                 JSONObject o=friends.getJSONObject(i);
                 u.setId(o.getInt("userId"));
                 u=userimp.retrieveUserById(u);
-                ExistIn existIn=new ExistIn(u, circle1, "0");
+                ExistIn existIn=new ExistIn(u, circle1, "open","false");
                 ExistInId id=new ExistInId(u.getId(), circle1.getId());
                 existIn.setId(id);
                 circleImp.addUserToCircle(existIn);

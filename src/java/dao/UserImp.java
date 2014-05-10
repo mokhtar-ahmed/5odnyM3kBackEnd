@@ -64,11 +64,11 @@ public class UserImp implements UsersInt{
 
     @Override
     public User retrieveUserById(User user) {
+        session.beginTransaction();
         List<User> x;
         String s="from User u where u.id =:uid";
         Query q = session.createQuery(s).setInteger("uid",user.getId()); 
         x=q.list();
-        session.beginTransaction();
         session.getTransaction().commit();
         
         if(!x.isEmpty())
@@ -78,7 +78,7 @@ public class UserImp implements UsersInt{
     
     public void edit(User user){
         session.beginTransaction();
-        session.merge(user);
+        session.saveOrUpdate(user);
         session.getTransaction().commit();
     }
     

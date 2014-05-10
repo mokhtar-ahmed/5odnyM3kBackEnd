@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 24, 2014 1:19:18 PM by Hibernate Tools 3.6.0 -->
+<!-- Generated May 10, 2014 1:41:21 PM by Hibernate Tools 3.6.0 -->
 <hibernate-mapping>
     <class name="pojo.ExistIn" table="exist_in" catalog="carpooling">
         <composite-id name="id" class="pojo.ExistInId">
@@ -20,6 +20,9 @@
         </many-to-one>
         <property name="bolckStatue" type="string">
             <column name="bolckStatue" length="45" not-null="true" />
+        </property>
+        <property name="deleteStatus" type="string">
+            <column name="deleteStatus" length="45" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package pojo;
-// Generated Apr 24, 2014 1:19:16 PM by Hibernate Tools 3.6.0
+// Generated May 10, 2014 1:41:20 PM by Hibernate Tools 3.6.0
 
 
 
@@ -13,22 +13,25 @@ public class ExistIn  implements java.io.Serializable {
      private User user;
      private Circle circle;
      private String bolckStatue;
+     private String deleteStatus;
 
     public ExistIn() {
     }
-    
-    public ExistIn( User user, Circle circle, String bolckStatue) {
+
+    public ExistIn( User user, Circle circle, String bolckStatue, String deleteStatus) {
        this.id = new ExistInId(user.getId(), circle.getId());
        this.user = user;
        this.circle = circle;
        this.bolckStatue = bolckStatue;
+       this.deleteStatus = deleteStatus;
     }
-
-    public ExistIn(ExistInId id, User user, Circle circle, String bolckStatue) {
+    
+    public ExistIn(ExistInId id, User user, Circle circle, String bolckStatue, String deleteStatus) {
        this.id = id;
        this.user = user;
        this.circle = circle;
        this.bolckStatue = bolckStatue;
+       this.deleteStatus = deleteStatus;
     }
    
     public ExistInId getId() {
@@ -58,6 +61,13 @@ public class ExistIn  implements java.io.Serializable {
     
     public void setBolckStatue(String bolckStatue) {
         this.bolckStatue = bolckStatue;
+    }
+    public String getDeleteStatus() {
+        return this.deleteStatus;
+    }
+    
+    public void setDeleteStatus(String deleteStatus) {
+        this.deleteStatus = deleteStatus;
     }
 
 

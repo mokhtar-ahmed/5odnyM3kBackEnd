@@ -38,10 +38,11 @@ public class SaveImg {
             String path = "D://" + user.getId() + ".png";
             BufferedImage img = ImageIO.read(new ByteArrayInputStream(image));
             ImageIO.write(img, "png", new File(path));
-            user.setUserImage(path);
+            
             UserImp ui=new UserImp();
             User u= new User();
             u=ui.retrieveUserByUserName(user);
+            u.setUserImage(path);
             ui.edit(u);
 
             return "eshta";
@@ -66,8 +67,10 @@ public class SaveImg {
         byte[] img = decodeImage(image);
         JSONObject o =new JSONObject(user);
         User u=new User();
-        u.setId(o.getInt("userId"));
-        u.setUsername(o.getString("userName"));
+//        u.setId(o.getInt("userId"));
+        u.setUsername(o.getString("username"));
+        UserImp userImp=new UserImp();
+        u=userImp.retrieveUserByUserName(u);
         String s = saveImgg(img, u);
         return s;
         } catch (JSONException ex) {
