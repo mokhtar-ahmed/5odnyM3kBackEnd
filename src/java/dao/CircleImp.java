@@ -48,7 +48,7 @@ public class CircleImp implements CircleInt{
         }
         return list1;*/
 //        Session session=Controller.getSessionFactory().openSession();
-        String str1 = "from Circle c where c.users.id =:uid";
+        String str1 = "from Circle c where c.user.id =:uid";
         Query q1 = session.createQuery(str1).setInteger("uid", user.getId());
         List<Circle> list1 = q1.list();
         return list1;
@@ -75,7 +75,7 @@ public class CircleImp implements CircleInt{
     @Override
     public void emptyCircle(Circle circle) {
         session.beginTransaction();
-        String s="delete from ExistIn e where e.circle.idCircle =:cid ";
+        String s="delete from ExistIn e where e.circle.id =:cid ";
         Query q=session.createQuery(s).setInteger("cid", circle.getId());
         session.getTransaction().commit();
     }
@@ -129,7 +129,7 @@ public class CircleImp implements CircleInt{
     @Override
     public List<User> retrieveCircleUsers( Circle circle) {
 //        String str1 = "from Circle c , ExistIn e where c.idCircle=e.circle.idCircle";
-        String str1="SELECT u FROM Users u , ExistIn e , Circle c where e.circle.idCircle = c.idCircle and e.users.id = u.id and c.idCircle =:cid";
+        String str1="SELECT u FROM User u , ExistIn e , Circle c where e.circle.id = c.id and e.user.id = u.id and c.id =:cid";
         Query q1 = session.createQuery(str1).setInteger("cid", circle.getId());
         List<User> list1=q1.list();
 //        List<ExistIn> list1 = q1.list();
